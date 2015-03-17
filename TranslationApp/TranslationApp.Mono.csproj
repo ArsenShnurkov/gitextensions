@@ -4,13 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7C106FAC-CB81-4D37-BE98-E7F6A5BDD143}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TranslationApp</RootNamespace>
-    <AssemblyName>TranslationApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>..\Bin\Logo\git-extensions-logo-final_mixed-256.ico</ApplicationIcon>
@@ -35,6 +34,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <ReleaseVersion>2.48</ReleaseVersion>
+    <AssemblyName>TranslationApp</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,10 +116,6 @@
     <ProjectReference Include="..\ResourceManager\ResourceManager.csproj">
       <Project>{D3440FD7-AFC5-4351-8741-6CDBF15CE944}</Project>
       <Name>ResourceManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Externals\NBug\NBug\NBug.csproj">
-      <Project>{62CED1D5-F603-40DE-8BF5-3E49D3A392F4}</Project>
-      <Name>NBug</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

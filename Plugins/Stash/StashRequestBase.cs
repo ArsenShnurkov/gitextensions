@@ -28,7 +28,7 @@ namespace Stash
         public StashResponse<T> Send()
         {
             if (Settings.DisableSSL) { System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; }; }
-#if MONO
+#if false
             var stashUrl = new System.Uri(Settings.StashUrl);
 #else
             var stashUrl = Settings.StashUrl; 
