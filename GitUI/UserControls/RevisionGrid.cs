@@ -1159,7 +1159,20 @@ namespace GitUI
                                           SelectInitialRevision();
                                           _isLoading = false;
                                           if (ShowBuildServerInfo)
-                                              BuildServerWatcher.LaunchBuildServerInfoFetchOperation();
+#if MONO
+                                          {
+                                              try
+                                              {
+#endif
+                                                  BuildServerWatcher.LaunchBuildServerInfoFetchOperation();
+#if MONO
+                                              }
+                                              catch (Exception ex)
+                                              {
+                                                  Trace.WriteLine(ex.ToString()); // Suppress an error
+                                              }
+                                          }
+#endif
                                       }, this);
             }
 
