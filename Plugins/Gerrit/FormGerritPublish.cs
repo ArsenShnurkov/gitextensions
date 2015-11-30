@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using GitCommands;
 using GitUIPluginInterfaces;
 using ResourceManager;
+using System.Diagnostics;
 
 namespace Gerrit
 {
@@ -26,6 +27,7 @@ namespace Gerrit
         {
             InitializeComponent();
             Translate();
+            Trace.Assert (toolTip1 != null);
         }
 
         private void PublishClick(object sender, EventArgs e)

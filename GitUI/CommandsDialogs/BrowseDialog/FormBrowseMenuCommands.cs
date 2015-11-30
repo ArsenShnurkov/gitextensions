@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GitUI.Hotkey;
+using System.Diagnostics;
 
 namespace GitUI.CommandsDialogs
 {
@@ -27,6 +28,7 @@ namespace GitUI.CommandsDialogs
 
             _formBrowse = formBrowse;
             RevisionGrid = revisionGrid;
+            Trace.Assert (RevisionGrid != null);
         }
 
         public IEnumerable<MenuCommand> GetNavigateMenuCommands()

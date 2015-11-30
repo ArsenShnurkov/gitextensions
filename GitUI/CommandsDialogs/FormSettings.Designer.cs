@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using GitUI.CommandsDialogs.SettingsDialog;
+using System.Diagnostics;
 
 namespace GitUI.CommandsDialogs
 {
@@ -38,6 +39,7 @@ namespace GitUI.CommandsDialogs
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.repositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            Trace.Assert(helpProvider1 != null);
             this.scriptInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonOk = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();

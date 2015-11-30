@@ -6,6 +6,7 @@ using GitCommands;
 using GitUIPluginInterfaces;
 using Newtonsoft.Json.Linq;
 using ResourceManager;
+using System.Diagnostics;
 
 namespace Gerrit
 {
@@ -28,6 +29,7 @@ namespace Gerrit
         {
             InitializeComponent();
             Translate();
+            Trace.Assert (toolTip1 != null);
         }
 
         public void PushAndShowDialogWhenFailed(IWin32Window owner)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using Git.hub;
+//using Git.hub;
 using GitCommands.Config;
 using GitCommands;
 using ResourceManager;
@@ -55,7 +55,7 @@ namespace GitUI.CommandsDialogs.BrowseDialog
         {
             try
             {
-                Client github = new Client();
+                /*Client github = new Client();
                 Repository gitExtRepo = github.getRepository("gitextensions", "gitextensions");
                 if (gitExtRepo == null)
                     return;
@@ -72,7 +72,7 @@ namespace GitUI.CommandsDialogs.BrowseDialog
                 if (releases != null && releases.Blob.Value != null)
                 {
                     CheckForNewerVersion(releases.Blob.Value.GetContent());
-                }
+                }*/
             }
             catch (Exception ex)
             {

@@ -10,6 +10,7 @@ using GitCommands.Statistics;
 using GitStatistics.PieChart;
 using GitUIPluginInterfaces;
 using ResourceManager;
+using System.Diagnostics;
 
 namespace GitStatistics
 {
@@ -160,6 +161,7 @@ namespace GitStatistics
             _lineCounter.LinesOfCodeUpdated += lineCounter_LinesOfCodeUpdated;
 
             _loadThread = Task.Factory.StartNew(LoadLinesOfCode);
+            Trace.Assert (_loadThread != null);
         }
 
         public void LoadLinesOfCode()

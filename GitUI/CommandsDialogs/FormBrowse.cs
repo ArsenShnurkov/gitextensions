@@ -232,6 +232,7 @@ namespace GitUI.CommandsDialogs
             RevisionGrid.ShowBuildServerInfo = true;
 
             _formBrowseMenuCommands = new FormBrowseMenuCommands(this, RevisionGrid);
+            Trace.Assert (_formBrowseMenuCommands != null);
             _formBrowseMenus = new FormBrowseMenus(menuStrip1);
             RevisionGrid.MenuCommands.MenuChanged += (sender, e) => _formBrowseMenus.OnMenuCommandsPropertyChanged();
         }
