@@ -8,6 +8,9 @@ namespace GitUI
     {
         public static Bitmap GetPictureBoxImage(DateTime currentDate)
         {
+            if (GitCommands.AppSettings.IconStyle == null) {
+                return null;
+            }
             if (GitCommands.AppSettings.IconStyle.Equals("Cow", StringComparison.OrdinalIgnoreCase))
             {
                 // Lemmings
