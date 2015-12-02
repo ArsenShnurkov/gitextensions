@@ -34,13 +34,13 @@ namespace GitUI.UserControls.RevisionGridClasses
         {
             UICommandsSource = aUICommandsSource;
             UICommandsSource.GitUICommandsChanged += UICommandsSource_GitUICommandsChanged;
-            GitIndexWatcher = new FileSystemWatcher();
-            RefsWatcher = new FileSystemWatcher();
+            //GitIndexWatcher = new FileSystemWatcher();
+            //RefsWatcher = new FileSystemWatcher();
             SetFileSystemWatcher();
 
             IndexChanged = true;
-            GitIndexWatcher.Changed += fileSystemWatcher_Changed;
-            RefsWatcher.Changed += fileSystemWatcher_Changed;
+            //GitIndexWatcher.Changed += fileSystemWatcher_Changed;
+            //RefsWatcher.Changed += fileSystemWatcher_Changed;
         }
 
         void UICommandsSource_GitUICommandsChanged(object sender, GitUICommandsChangedEventArgs e)
@@ -52,8 +52,8 @@ namespace GitUI.UserControls.RevisionGridClasses
         {
             if (!Module.IsValidGitWorkingDir())
             {
-                GitIndexWatcher.EnableRaisingEvents = false;
-                RefsWatcher.EnableRaisingEvents = false;
+                //GitIndexWatcher.EnableRaisingEvents = false;
+                //RefsWatcher.EnableRaisingEvents = false;
             }
             else
             {
@@ -63,14 +63,14 @@ namespace GitUI.UserControls.RevisionGridClasses
 
                     Path = Module.GetGitDirectory();
 
-                    GitIndexWatcher.Path = Path;
-                    GitIndexWatcher.Filter = "index";
-                    GitIndexWatcher.IncludeSubdirectories = false;
-                    GitIndexWatcher.EnableRaisingEvents = enabled;
+                    //GitIndexWatcher.Path = Path;
+                    //GitIndexWatcher.Filter = "index";
+                    //GitIndexWatcher.IncludeSubdirectories = false;
+                    //GitIndexWatcher.EnableRaisingEvents = enabled;
 
-                    RefsWatcher.Path = System.IO.Path.Combine(Path, "refs");
-                    RefsWatcher.IncludeSubdirectories = true;
-                    RefsWatcher.EnableRaisingEvents = enabled;
+                    //RefsWatcher.Path = System.IO.Path.Combine(Path, "refs");
+                    //RefsWatcher.IncludeSubdirectories = true;
+                    //RefsWatcher.EnableRaisingEvents = enabled;
                 }
                 catch
                 {
@@ -95,7 +95,7 @@ namespace GitUI.UserControls.RevisionGridClasses
             set
             {
                 indexChanged = value;
-                GitIndexWatcher.EnableRaisingEvents = !IndexChanged;
+                //GitIndexWatcher.EnableRaisingEvents = !IndexChanged;
 
                 if (Changed != null)
                     Changed(this, new IndexChangedEventArgs(IndexChanged));
@@ -104,8 +104,8 @@ namespace GitUI.UserControls.RevisionGridClasses
 
         private bool enabled;
         private string Path;
-        private FileSystemWatcher GitIndexWatcher { get; set; }
-        private FileSystemWatcher RefsWatcher { get; set; }
+        //private FileSystemWatcher GitIndexWatcher { get; set; }
+        //private FileSystemWatcher RefsWatcher { get; set; }
 
         private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
@@ -134,11 +134,11 @@ namespace GitUI.UserControls.RevisionGridClasses
         public void Dispose()
         {
             enabled = false;
-            GitIndexWatcher.EnableRaisingEvents = false;
-            GitIndexWatcher.Changed -= fileSystemWatcher_Changed;
-            RefsWatcher.Changed -= fileSystemWatcher_Changed;
-            GitIndexWatcher.Dispose();
-            RefsWatcher.Dispose();
+            //GitIndexWatcher.EnableRaisingEvents = false;
+            //GitIndexWatcher.Changed -= fileSystemWatcher_Changed;
+            //RefsWatcher.Changed -= fileSystemWatcher_Changed;
+            //GitIndexWatcher.Dispose();
+            //RefsWatcher.Dispose();
         }
     }
 }

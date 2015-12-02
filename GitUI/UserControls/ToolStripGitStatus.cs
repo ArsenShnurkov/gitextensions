@@ -30,13 +30,13 @@ namespace GitUI
 
         private bool _commandIsRunning = false;
         private bool _statusIsUpToDate = true;
-        private readonly FileSystemWatcher _workTreeWatcher = new FileSystemWatcher();
-        private readonly FileSystemWatcher _gitDirWatcher = new FileSystemWatcher();
+        //private readonly FileSystemWatcher _workTreeWatcher = new FileSystemWatcher();
+        //private readonly FileSystemWatcher _gitDirWatcher = new FileSystemWatcher();
         private string _gitPath;
         private string _submodulesPath;
         private int _nextUpdateTime;
         private WorkingStatus _currentStatus;
-        private HashSet<string> _ignoredFiles = new HashSet<string>(); 
+        //private HashSet<string> _ignoredFiles = new HashSet<string>(); 
 
         public string CommitTranslatedString { get; set; }
 
@@ -75,15 +75,15 @@ namespace GitUI
         public ToolStripGitStatus()
         {
             InitializeComponent();
-            components.Add(_workTreeWatcher);
-            components.Add(_gitDirWatcher);
+            //components.Add(_workTreeWatcher);
+            //components.Add(_gitDirWatcher);
             CommitTranslatedString = "Commit";
             ignoredFilesTimer.Interval = MaxUpdatePeriod;
             CurrentStatus = WorkingStatus.Stopped;
 
             // Setup a file watcher to detect changes to our files. When they
             // change, we'll update our status.
-            _workTreeWatcher.EnableRaisingEvents = false;
+            /*_workTreeWatcher.EnableRaisingEvents = false;
             _workTreeWatcher.Changed += WorkTreeChanged;
             _workTreeWatcher.Created += WorkTreeChanged;
             _workTreeWatcher.Deleted += WorkTreeChanged;
@@ -101,6 +101,7 @@ namespace GitUI
             _gitDirWatcher.Error += WorkTreeWatcherError;
             _gitDirWatcher.IncludeSubdirectories = true;
             _gitDirWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;            
+*/            
         }
 
         private void GitUICommandsChanged(object sender, GitUICommandsChangedEventArgs e)
@@ -154,8 +155,8 @@ namespace GitUI
                 if (!string.IsNullOrEmpty(workTreePath) && Directory.Exists(workTreePath) &&
                     !string.IsNullOrEmpty(gitDirPath) && Directory.Exists(gitDirPath))
                 {
-                    _workTreeWatcher.Path = workTreePath;
-                    _gitDirWatcher.Path = gitDirPath;
+                    //_workTreeWatcher.Path = workTreePath;
+                    //_gitDirWatcher.Path = gitDirPath;
                     _gitPath = Path.GetDirectoryName(gitDirPath);
                     _submodulesPath = Path.Combine(_gitPath, "modules");
                     UpdateIgnoredFiles(true);
@@ -180,10 +181,10 @@ namespace GitUI
 
         private void WorkTreeChanged(object sender, FileSystemEventArgs e)
         {
-            var fileName = e.FullPath.Substring(_workTreeWatcher.Path.Length).ToPosixPath();
+            /*var fileName = e.FullPath.Substring(_workTreeWatcher.Path.Length).ToPosixPath();
             if (_ignoredFiles.Contains(fileName))
                 return;
-
+*/
             if (e.FullPath.StartsWith(_gitPath))
             {
                 GitDirChanged(sender, e);
@@ -227,14 +228,14 @@ namespace GitUI
 
         private void UpdateIgnoredFiles(bool clearImmediately)
         {
-            if (clearImmediately)
+            /*if (clearImmediately)
                 _ignoredFiles = new HashSet<string>();
 
             AsyncLoader.DoAsync(
                 LoadIgnoredFiles, 
                 (ignoredSet) => { _ignoredFiles = ignoredSet; },
                 (e) => { _ignoredFiles = new HashSet<string>(); }
-                );   
+                );   */
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e)
@@ -351,19 +352,19 @@ namespace GitUI
                 {
                     case WorkingStatus.Stopped:
                         timerRefresh.Stop();
-                        _workTreeWatcher.EnableRaisingEvents = false;
-                        _gitDirWatcher.EnableRaisingEvents = false;
+                        //_workTreeWatcher.EnableRaisingEvents = false;
+                        //_gitDirWatcher.EnableRaisingEvents = false;
                         Visible = false;
                         return;
                     case WorkingStatus.Paused:
                         timerRefresh.Stop();
-                        _workTreeWatcher.EnableRaisingEvents = false;
-                        _gitDirWatcher.EnableRaisingEvents = false;
+                        //_workTreeWatcher.EnableRaisingEvents = false;
+                        //_gitDirWatcher.EnableRaisingEvents = false;
                         return;
                     case WorkingStatus.Started:
                         timerRefresh.Start();
-                        _workTreeWatcher.EnableRaisingEvents = true;
-                        _gitDirWatcher.EnableRaisingEvents = !_gitDirWatcher.Path.StartsWith(_workTreeWatcher.Path);
+                        //_workTreeWatcher.EnableRaisingEvents = true;
+                        //_gitDirWatcher.EnableRaisingEvents = !_gitDirWatcher.Path.StartsWith(_workTreeWatcher.Path);
                         ScheduleDeferredUpdate();
                         Visible = true;
                         return;
